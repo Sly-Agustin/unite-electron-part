@@ -16,7 +16,6 @@ const Register = () => {
     setData({
       ...data,
       [event.target.name]: event.target.value,
-      [event.target.lastName]: event.target.value
     })
   }
 
@@ -38,11 +37,11 @@ const Register = () => {
         }
         else{
           const responseFromServer = await response.json();
-          if (responseFromServer.errCode == 101) {
+          if (responseFromServer.errCode === 101) {
             setMessages('Username already exists, try another one');
             setIsLoading(false);
           }
-          if (responseFromServer.errCode == 102) {
+          if (responseFromServer.errCode === 102) {
             setMessages('An account associated to that email already exists');
             setIsLoading(false);
           }
@@ -88,7 +87,7 @@ const Register = () => {
           <button className="btn btn-primary">Registrarse</button>
         </div>    
         <p>{messages}</p>
-        {isLoading && <p>"sending registration..."</p>}
+        {isLoading && <p>sending registration...</p>}
       </form>
     </Fragment>
   )
