@@ -7,6 +7,8 @@ const Register = () => {
     password: '',
     email: ''
   })
+  const [messages, setMessages] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -18,20 +20,41 @@ const Register = () => {
     })
   }
 
-  const sendData = (event) => {
-    event.preventDefault();
-    setData({
-      ...data,
-      [event.target.username]: event.target.value,
-      [event.target.password]: event.target.value,
-      [event.target.email]: event.target.value
-    })
-    console.log('Data introduced for register: '+JSON.stringify(data))
-  }
-
-  // Dummy until api connection
   const onSubmit = (data) => {
-    console.log(data)
+    const registerAccount = async() => {
+      setIsLoading(true);
+      try{
+        // Change to env var received from electron in future refactor
+        const response = await fetch('http://localhost:5001/auth/register', {
+          method: "POST",
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        if(response.ok){
+          setMessages('Successfully saved');
+          setIsLoading(false);
+        }
+        else{
+          const responseFromServer = await response.json();
+          if (responseFromServer.errCode == 101) {
+            setMessages('Username already exists, try another one');
+            setIsLoading(false);
+          }
+          if (responseFromServer.errCode == 102) {
+            setMessages('An account associated to that email already exists');
+            setIsLoading(false);
+          }
+        }
+      }
+      catch(err){
+        setMessages('Something bad happened, try again later');
+        setIsLoading(false);
+      }
+    }
+
+    registerAccount();
   }
 
   return(
@@ -64,6 +87,8 @@ const Register = () => {
         <div className="col-md-3">
           <button className="btn btn-primary">Registrarse</button>
         </div>    
+        <p>{messages}</p>
+        {isLoading && <p>"sending registration..."</p>}
       </form>
     </Fragment>
   )
