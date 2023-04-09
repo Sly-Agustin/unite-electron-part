@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [data, setData] = useState({
@@ -9,6 +10,7 @@ const Register = () => {
   })
   const [messages, setMessages] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [registered, setRegistered] = useState(false);
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -33,6 +35,7 @@ const Register = () => {
         });
         if(response.ok){
           setMessages('Successfully saved');
+          setRegistered(true);
           setIsLoading(false);
         }
         else{
@@ -87,6 +90,9 @@ const Register = () => {
           <button className="btn btn-primary">Registrarse</button>
         </div>    
         <p>{messages}</p>
+        {registered && <Fragment>
+          <p>Return to <Link to="/login">login</Link></p>
+        </Fragment>}
         {isLoading && <p>sending registration...</p>}
       </form>
     </Fragment>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 const AllGames = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,7 @@ const AllGames = () => {
       <Fragment>
         <h1>All games dummy</h1>
         <div className="App">
-          <h2>Cargando...</h2>
+          <h2>Loading...</h2>
         </div>
       </Fragment>
     )
@@ -40,7 +41,9 @@ const AllGames = () => {
         <ul> 
           {
             data.games.map((item, index) =>
-              <li key={index}>{item.name}</li>
+              <li key={index}>
+                <Link to={`/games/${item._id}`} state={{id: item._id, name: item.name}}>{item.name}</Link>
+              </li>
             )
           }
         </ul>
