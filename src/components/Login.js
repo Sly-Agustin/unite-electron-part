@@ -34,11 +34,12 @@ const Login = () => {
           body: JSON.stringify(data)
         });
         if(response.ok){
+          const responseJson = await response.json();
           setMessages('Login complete!');
           setIsLoading(false);
           setLogged(true);
           localStorage.setItem('logged', true);
-          // Future redirect here
+          localStorage.setItem('userId', responseJson.id)
         }
         else{
           setMessages('Login failed, check your credentials and try again')

@@ -12,6 +12,7 @@ import Login from "./Login"
 import Register from "./RegisterAccount"
 import SpecificGame from "./SpecificGame";
 import Mod from "./Mod";
+import UploadMod from "./UploadMod";
 
 const App = () => {
   return(
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/login" element={<Login />} loader={async() => { if(localStorage.getItem('logged')) {return redirect("/games");} }}></Route>
           <Route path="/games" element={<AllGames />}></Route>
           <Route path="/games/:id" element={<SpecificGame />}></Route>
+          <Route path="/games/:id/upload" element={<UploadMod />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/mod/:id" element={<Mod />}></Route>
         </Routes>

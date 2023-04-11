@@ -42,6 +42,7 @@ const SpecificGame = () => {
     <Fragment>
       <p>Specific game page</p>
       <p>Name: {name}</p>
+      <p>Want to upload your mod? <Link className="btn btn-primary" to={`upload`}>yes</Link></p>
       <div className="container">
         {
           mods.map((mod) => 
