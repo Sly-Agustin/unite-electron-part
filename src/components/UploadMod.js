@@ -9,6 +9,7 @@ const UploadMod = () => {
   const [data, setData] = useState();
   const [userId, setUserId] = useState('');
   const [messages, setMessages] = useState();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const { id } = useParams();
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -69,6 +70,19 @@ const UploadMod = () => {
         });
         if(response.ok){
           setMessages('Mod successfully sent!');
+          const responseJson = await response.json();
+          if(selectedImage!=null){
+            const formData = new FormData();
+            formData.append("file", selectedImage);
+            const responseImage = await fetch(`http://localhost:5001/mod/${responseJson.id}/picture`, {
+              method: "POST",
+              /*headers: {
+                'Content-type': 'multipart/form-data'
+              },*/
+              body: formData,
+              credentials: 'include'
+            })
+          }
         }
         else{
           const error= await response.json()
@@ -127,6 +141,18 @@ const UploadMod = () => {
             onChange={handleInputDataChange}>
           </textarea>
           <p className="text-danger">{errors.description?.message}</p>
+        </div>
+        <div className="col-md-3">
+        <label for="picture">Mod picture (optional)</label>
+          <input
+            type="file"
+            id="picture"
+            name="myImage"
+            onChange={(event) => {
+              console.log(event.target.files[0]);
+              setSelectedImage(event.target.files[0]);
+            }}
+          />
         </div>
         <div className="col-md-3">
           <button className="btn btn-primary">Send mod</button>
