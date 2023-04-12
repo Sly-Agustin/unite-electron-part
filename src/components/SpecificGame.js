@@ -58,13 +58,9 @@ const SpecificGame = () => {
             <Link to={`/mod/${mod._id}`}>
               <div className="card" key={mod._id} style={{width: "18rem"}}> 
                 <div className="card-body">
-                  <img src={`${process.env.REACT_APP_HOST}/mod/${mod._id}/picture`} onError=
-                  {
-                    (currentTarget) => {
-                      currentTarget.target.onerror = null;
-                      currentTarget.target.src = noimage;
-                    }
-                  } width={200} height={200}></img>
+                  {mod.picture && <img src={`${process.env.REACT_APP_HOST}/mod/${mod._id}/picture`} width={200} height={200} alt="couldn't get image"></img>}
+                  {!mod.picture && <img src={noimage} width={200} height={200} alt="couldn't get image"></img>}
+                  
                   <h5 className="card-title">{mod.name}</h5> 
                 </div>
               </div>

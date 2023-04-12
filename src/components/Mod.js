@@ -70,6 +70,7 @@ const Mod = () => {
       <p>Description:</p>
       <p>{mod.description}</p>
       {mod.additionalInfo && <p>Additional info: {mod.additionalInfo}</p>}
+      {mod.picture && <img src={process.env.REACT_APP_HOST+'/mod/'+mod._id+'/picture'}></img>}
       <button onClick={downloadFile}>Download</button>
     </Fragment>
   )
