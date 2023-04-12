@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import loadingGif from '../assets/loading.gif'
 
 const Register = () => {
   const [data, setData] = useState({
@@ -93,7 +94,10 @@ const Register = () => {
         {registered && <Fragment>
           <p>Return to <Link to="/login">login</Link></p>
         </Fragment>}
-        {isLoading && <p>sending registration...</p>}
+        {isLoading && 
+        <div className="container d-flex justify-content-center align-content-center">
+          <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+        </div>}
       </form>
     </Fragment>
   )

@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import loadingGif from '../assets/loading.gif'
 
 const UploadMod = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -76,9 +77,6 @@ const UploadMod = () => {
             formData.append("file", selectedImage);
             const responseImage = await fetch(`http://localhost:5001/mod/${responseJson.id}/picture`, {
               method: "POST",
-              /*headers: {
-                'Content-type': 'multipart/form-data'
-              },*/
               body: formData,
               credentials: 'include'
             })
@@ -100,7 +98,9 @@ const UploadMod = () => {
   if(isLoading){
     return(
       <Fragment>
-        <p>Loading...</p>
+        <div className="container d-flex justify-content-center align-content-center">
+          <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+        </div>
       </Fragment>
     )
   }

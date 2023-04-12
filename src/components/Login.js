@@ -1,6 +1,7 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
+import loadingGif from '../assets/loading.gif'
 
 const Login = () => {
   const [data, setData] = useState({
@@ -89,7 +90,10 @@ const Login = () => {
           <button className="btn btn-primary">Login</button>
         </div>  
         <p>{messages}</p>
-        {isLoading && <p>Loging in...</p>}
+        {isLoading && 
+        <div className="container d-flex justify-content-center align-content-center">
+          <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+        </div>}
         {logged && <Navigate replace to="/games" />}
       </form>
     </Fragment>

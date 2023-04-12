@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
+import loadingGif from "../assets/loading.gif"
 
 const AllGames = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +29,9 @@ const AllGames = () => {
         <h1>All games dummy</h1>
         <div className="App">
           <h2>Loading...</h2>
+          <div className="container d-flex justify-content-center align-content-center">
+            <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+          </div>
         </div>
       </Fragment>
     )

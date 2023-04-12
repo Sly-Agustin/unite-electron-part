@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import {useParams} from 'react-router-dom'
+import loadingGif from '../assets/loading.gif'
 
 const Mod = () => {
   const [mod, setMod] = useState({});
@@ -57,7 +58,9 @@ const Mod = () => {
   if(isLoading){
     return(
       <Fragment>
-        <p>Loading...</p>
+        <div className="container d-flex justify-content-center align-content-center">
+          <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+        </div>
       </Fragment>
     )
   }

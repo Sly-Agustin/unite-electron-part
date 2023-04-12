@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useLocation, Link } from 'react-router-dom'
 import noimage from '../assets/no-image-icon.png'
+import loadingGif from '../assets/loading.gif'
 
 const SpecificGame = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +39,9 @@ const SpecificGame = () => {
       <Fragment>
         <p>Specific game page</p>
         <p>Name: {name}</p>
-        <p>Loading...</p>
+        <div className="container d-flex justify-content-center align-content-center">
+          <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+        </div>
       </Fragment>
     )
 
