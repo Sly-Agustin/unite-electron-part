@@ -75,7 +75,7 @@ const UploadMod = () => {
           if(selectedImage!=null){
             const formData = new FormData();
             formData.append("file", selectedImage);
-            const responseImage = await fetch(`${process.env.REACT_APP_HOST}/mod/${responseJson.id}/picture`, {
+            await fetch(`${process.env.REACT_APP_HOST}/mod/${responseJson.id}/picture`, {
               method: "POST",
               body: formData,
               credentials: 'include'
