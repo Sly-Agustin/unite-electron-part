@@ -27,7 +27,7 @@ const Register = () => {
       setIsLoading(true);
       try{
         // Change to env var received from electron in future refactor
-        const response = await fetch('http://localhost:5001/auth/register', {
+        const response = await fetch(`${process.env.REACT_APP_HOST}/auth/register`, {
           method: "POST",
           headers: {
             'Content-type': 'application/json'

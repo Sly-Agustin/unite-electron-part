@@ -11,7 +11,7 @@ const Mod = () => {
   useEffect(() => {
     const getMod = async() => {
       try {
-        const response = await fetch(`http://localhost:5001/mod/${id}`);
+        const response = await fetch(`${process.env.REACT_APP_HOST}/mod/${id}`);
         const modJson = await response.json(); 
         setMod(modJson.data);
         setIsLoading(false);

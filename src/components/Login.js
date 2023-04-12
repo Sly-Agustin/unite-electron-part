@@ -25,7 +25,7 @@ const Login = () => {
     const loginAccount = async () => {
       setIsLoading(true)
       try{
-        const response = await fetch('http://localhost:5001/auth/signin', {
+        const response = await fetch(`${process.env.REACT_APP_HOST}/auth/signin`, {
           method: "POST",
           headers: {
             Accept: 'application/json',

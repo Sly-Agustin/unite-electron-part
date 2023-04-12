@@ -14,7 +14,7 @@ const SpecificGame = () => {
   useEffect(() => {
     const getMods = async() => {
       try{
-        const response = await fetch(`http://localhost:5001/mod/game/${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_HOST}/mod/game/${id}`, {
           credentials: 'include'
         });
         const modsJson = await response.json(); 

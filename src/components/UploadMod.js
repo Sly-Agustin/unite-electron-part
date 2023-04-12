@@ -61,7 +61,7 @@ const UploadMod = () => {
   const onSubmit = () => {
     const registerMod = async() => {
       try{
-        const response = await fetch('http://localhost:5001/mod', {
+        const response = await fetch(`${process.env.REACT_APP_HOST}/mod`, {
           method: "POST",
           headers: {
             'Content-type': 'application/json'
@@ -75,7 +75,7 @@ const UploadMod = () => {
           if(selectedImage!=null){
             const formData = new FormData();
             formData.append("file", selectedImage);
-            const responseImage = await fetch(`http://localhost:5001/mod/${responseJson.id}/picture`, {
+            const responseImage = await fetch(`${process.env.REACT_APP_HOST}/mod/${responseJson.id}/picture`, {
               method: "POST",
               body: formData,
               credentials: 'include'

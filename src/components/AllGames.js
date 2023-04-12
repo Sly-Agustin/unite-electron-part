@@ -10,7 +10,7 @@ const AllGames = () => {
   useEffect(() => {
     const getGames = async() => {
       try{
-        const response = await fetch('http://localhost:5001/games/all');
+        const response = await fetch(`${process.env.REACT_APP_HOST}/games/all`);
         const games = await response.json(); 
         setData(games);
         setIsLoading(false);
