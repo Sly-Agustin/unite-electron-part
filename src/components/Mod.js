@@ -5,6 +5,7 @@ import loadingGif from '../assets/loading.gif'
 const Mod = () => {
   const [mod, setMod] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [messages, setMessages] = useState();
 
   const { id } = useParams();
 
@@ -12,9 +13,15 @@ const Mod = () => {
     const getMod = async() => {
       try {
         const response = await fetch(`${process.env.REACT_APP_HOST}/mod/${id}`);
-        const modJson = await response.json(); 
-        setMod(modJson.data);
-        setIsLoading(false);
+        if(!response.ok){
+          setIsLoading(false);
+          setMessages('This game does not exist');
+        }
+        else{
+          const modJson = await response.json(); 
+          setMod(modJson.data);
+          setIsLoading(false);  
+        }    
       }
       catch(err){
         console.log('Something bad happened, try again later')
@@ -67,11 +74,12 @@ const Mod = () => {
   return(
     <Fragment>
       <h2>{mod.name}</h2>
-      <p>Description:</p>
-      <p>{mod.description}</p>
+      {mod.description && <p>Description:</p>}
+      {mod.description && <p>{mod.description}</p>}
       {mod.additionalInfo && <p>Additional info: {mod.additionalInfo}</p>}
       {mod.picture && <img src={process.env.REACT_APP_HOST+'/mod/'+mod._id+'/picture'}></img>}
-      <button onClick={downloadFile}>Download</button>
+      {messages && <p>{messages}</p>}
+      {Object.entries(mod).length!=0 && <button onClick={downloadFile}>Download</button>}
     </Fragment>
   )
 }
