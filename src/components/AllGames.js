@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
+import noimage from '../assets/no-image-icon.png'
 import loadingGif from "../assets/loading.gif"
 
 const AllGames = () => {
@@ -39,18 +40,22 @@ const AllGames = () => {
 
   return(
     <Fragment>
-      <h1>All games dummy</h1>
-      <div className="App">
-        <h2>Juegos</h2>
-        <ul> 
-          {
-            data.games.map((item, index) =>
-              <li key={index}>
-                <Link to={`/games/${item._id}`} >{item.name}</Link>
-              </li>
-            )
-          }
-        </ul>
+      <h1>Games available</h1>
+      <div className="container">      
+        {
+          data.games.map((game) => 
+            <Link to={`/games/${game._id}`}>
+              <div className="card" key={game._id} style={{width: "18rem"}}> 
+                <div className="card-body">
+                  {game.picture && <img src={`${process.env.REACT_APP_HOST}/games/${game._id}/picture`} width={200} height={200} alt="couldn't get image"></img>}
+                  {!game.picture && <img src={noimage} width={200} height={200} alt="couldn't get image"></img>}
+                  
+                  <h5 className="card-title">{game.name}</h5> 
+                </div>
+              </div>
+            </Link>
+          )
+        }
       </div>
     </Fragment>
   )

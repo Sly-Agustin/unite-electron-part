@@ -39,7 +39,7 @@ const Mod = () => {
       const responseBlob = await response.blob();
       
       const url = window.URL.createObjectURL(
-        new Blob([responseBlob]),
+        new Blob([responseBlob], {type: "application/zip"}),
       );
       const link = document.createElement('a');
       link.href = url;
