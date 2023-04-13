@@ -74,10 +74,10 @@ const Mod = () => {
   return(
     <Fragment>
       <h2>{mod.name}</h2>
+      {mod.picture && <img src={process.env.REACT_APP_HOST+'/mod/'+mod._id+'/picture'}></img>}
       {mod.description && <p>Description:</p>}
       {mod.description && <p>{mod.description}</p>}
-      {mod.additionalInfo && <p>Additional info: {mod.additionalInfo}</p>}
-      {mod.picture && <img src={process.env.REACT_APP_HOST+'/mod/'+mod._id+'/picture'}></img>}
+      {mod.additionalInfo && <p>Additional info: {mod.additionalInfo}</p>}   
       {messages && <p>{messages}</p>}
       {Object.entries(mod).length!=0 && <button onClick={downloadFile}>Download</button>}
     </Fragment>
