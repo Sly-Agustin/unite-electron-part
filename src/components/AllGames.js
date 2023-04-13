@@ -46,7 +46,7 @@ const AllGames = () => {
           {
             data.games.map((item, index) =>
               <li key={index}>
-                <Link to={`/games/${item._id}`} state={{id: item._id, name: item.name}}>{item.name}</Link>
+                <Link to={`/games/${item._id}`} >{item.name}</Link>
               </li>
             )
           }
