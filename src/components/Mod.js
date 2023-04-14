@@ -85,18 +85,13 @@ const Mod = () => {
         <li className="nav-item" role="presentation">
           <button className="nav-link" id="additionalInfo-tab" data-bs-toggle="tab" data-bs-target="#additionalInfo" type="button" role="tab" aria-controls="additionalInfo" aria-selected="false">Additional information</button>
         </li>
-        }
-        
-        <li className="nav-item" role="presentation">
-          <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-        </li>
+        }        
       </ul>
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active font-color-light" id="overview" role="tabpanel" aria-labelledby="overview-tab">{mod.description}</div>
         {mod.additionalInfo &&
           <div className="tab-pane fade font-color-light" id="additionalInfo" role="tabpanel" aria-labelledby="additionalInfo-tab">{mod.additionalInfo}</div>
         }
-        <div className="tab-pane fade font-color-light" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
       </div>
       {messages && <p>{messages}</p>}
       {Object.entries(mod).length!=0 && <button className="mt-3 btn button-dark" onClick={downloadFile}>Download</button>}
