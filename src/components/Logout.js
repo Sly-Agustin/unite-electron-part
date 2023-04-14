@@ -1,10 +1,12 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { AuthContext } from "./App";
 
 const Logout = () => {
-  const [loggedOut, setLoggedOut] = useState(false); 
+  const [hasLoggedOut, setHasLoggedOut] = useState(false); 
+  const {setIsLoggedOn} = useContext(AuthContext);
   
-  const logOut = useEffect(()=>{
+  useEffect(()=>{
     const serverLogout = async () => {
       const logout = await fetch(`${process.env.REACT_APP_HOST}/auth/signout`, {
         method: "POST",
@@ -13,7 +15,8 @@ const Logout = () => {
       if(logout.ok){
         localStorage.removeItem('logged')
         localStorage.removeItem('userId')
-        setLoggedOut(true);
+        setIsLoggedOn(false);
+        setHasLoggedOut(true);
       }
     }
   
@@ -23,7 +26,7 @@ const Logout = () => {
   return(
   <Fragment>
     <p>Logging out...</p>
-    {loggedOut && <Navigate replace to="/" />}
+    {hasLoggedOut && <Navigate replace to="/" />}
   </Fragment>)
 }
 
