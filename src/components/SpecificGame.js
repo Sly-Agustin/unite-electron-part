@@ -43,8 +43,6 @@ const SpecificGame = () => {
   if(isLoading){
     return(
       <Fragment>
-        <p>Specific game page</p>
-        
         <div className="container d-flex justify-content-center align-content-center">
           <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
         </div>
@@ -55,9 +53,8 @@ const SpecificGame = () => {
 
   return (
     <Fragment>
-      <p>Specific game page</p>
-      <p>Name: {gameName}</p>
-      {isLogged && <p>Want to upload your mod? <Link className="btn btn-primary" to={`upload`}>yes</Link></p>}
+      <h2 className="mb-4">Viewing mods for {gameName}</h2>
+      {isLogged && <p>Want to upload your mod? <Link className="btn button-dark ms-4" to={`upload`}>Let's do it!</Link></p>}
       <div className="container d-flex">
         <div className="row">
 
@@ -74,6 +71,8 @@ const SpecificGame = () => {
                   </div>  
                   <div className="col-8 p-3">
                   <h5 className="card-title text-white">{mod.name}</h5> 
+                  {mod.description && mod.description.slice(150)!=[] && <p>{mod.description.slice(0,150)}...</p>}
+                  {mod.description && mod.description.slice(150)==[] && <p>{mod.description}</p>}
                   </div>
                 </div> 
                 

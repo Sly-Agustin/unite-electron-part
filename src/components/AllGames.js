@@ -42,20 +42,23 @@ const AllGames = () => {
     <Fragment>
       <h1>Games available</h1>
       <div className="container">      
-        {
-          data.games.map((game) => 
-            <Link to={`/games/${game._id}`}>
-              <div className="card" key={game._id} style={{width: "18rem"}}> 
-                <div className="card-body">
-                  {game.picture && <img src={`${process.env.REACT_APP_HOST}/games/${game._id}/picture`} width={200} height={200} alt="couldn't get image"></img>}
-                  {!game.picture && <img src={noimage} width={200} height={200} alt="couldn't get image"></img>}
-                  
-                  <h5 className="card-title">{game.name}</h5> 
+        <div class="row">
+          {
+            data.games.map((game) => 
+              <div className="col-sm-2 me-2">
+                <div className="card border-dark bg-dark" key={game._id}> 
+                  <Link className="text-decoration-none" to={`/games/${game._id}`}>
+                    <div className="card-body ">
+                      {game.picture && <img src={`${process.env.REACT_APP_HOST}/games/${game._id}/picture`} width={200} height={200} alt="couldn't get image"></img>}
+                      {!game.picture && <img src={noimage} width={200} height={200} alt="couldn't get image"></img>}
+                      <h5 className="card-title mt-2">{game.name}</h5> 
+                    </div>
+                  </Link>
                 </div>
               </div>
-            </Link>
-          )
-        }
+            )
+          }
+        </div>
       </div>
     </Fragment>
   )

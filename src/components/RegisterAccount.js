@@ -62,43 +62,57 @@ const Register = () => {
 
   return(
     <Fragment>
-      <h1>Prototype register component</h1>
-      <form className="row" onSubmit={handleSubmit(onSubmit)}>
-        <div className="col-md-3">
-          <input className="form-control" 
-            type="email" 
-            placeholder="Email" 
-            {...register("email", {required: 'Email required', maxLength: {value: 100, message: 'Max length of email is 1000 characters'}})} 
-            onChange={handleInputDataChange}>
-          </input>
-          <p className="text-danger">{errors.email?.message}</p>
-        </div>  
-        <div className="col-md-3">
-          <input className="form-control" placeholder="Username" 
-            {...register("username", {required: 'Username is required', minLength: {value: 5, message: 'Username must be at least 5 characters long'}})} 
-            onChange={handleInputDataChange}>
-          </input>
-          <p className="text-danger">{errors.username?.message}</p>
-        </div>  
-        <div className="col-md-3">
-          <input className="form-control" type="password" placeholder="password" 
-            {...register("password", {required: 'Password is required', minLength: {value: 6, message: 'Password must be at least 6 characters long'}})} 
-            onChange={handleInputDataChange}>
-          </input>
-          <p className="text-danger">{errors.password?.message}</p>
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-12 col-xl-11">
+            <div class="card dark-bg-no-hover">
+              <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <h2 class="text-center fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</h2>
+                    <form class="mx-1 mx-md-4" onSubmit={handleSubmit(onSubmit)}>
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <input className="form-control bg-dark-hover border-0" 
+                          type="email" 
+                          placeholder="Email" 
+                          {...register("email", {required: 'Email required', maxLength: {value: 100, message: 'Max length of email is 1000 characters'}})} 
+                          onChange={handleInputDataChange}>
+                        </input>
+                        <p className="text-danger">{errors.email?.message}</p>
+                      </div>  
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <input className="form-control bg-dark-hover border-0" placeholder="Username" 
+                          {...register("username", {required: 'Username is required', minLength: {value: 5, message: 'Username must be at least 5 characters long'}})} 
+                          onChange={handleInputDataChange}>
+                        </input>
+                        <p className="text-danger">{errors.username?.message}</p>
+                      </div>  
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <input className="form-control bg-dark-hover border-0" type="password" placeholder="Password" 
+                          {...register("password", {required: 'Password is required', minLength: {value: 6, message: 'Password must be at least 6 characters long'}})} 
+                          onChange={handleInputDataChange}>
+                        </input>
+                        <p className="text-danger">{errors.password?.message}</p>
+                      </div>
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <button className="btn btn-primary">Register</button>
+                      </div>    
+                      <p>{messages}</p>
+                      {registered && <Fragment>
+                        <p>Return to <Link to="/login">login</Link></p>
+                      </Fragment>}
+                      {isLoading && 
+                      <div className="container d-flex justify-content-center align-content-center">
+                        <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+                      </div>}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="col-md-3">
-          <button className="btn btn-primary">Registrarse</button>
-        </div>    
-        <p>{messages}</p>
-        {registered && <Fragment>
-          <p>Return to <Link to="/login">login</Link></p>
-        </Fragment>}
-        {isLoading && 
-        <div className="container d-flex justify-content-center align-content-center">
-          <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
-        </div>}
-      </form>
+      </div>
     </Fragment>
   )
 }
