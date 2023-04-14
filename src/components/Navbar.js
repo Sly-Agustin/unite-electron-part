@@ -5,10 +5,7 @@ import {
 import { AuthContext } from "./App";
 
 const Navbar = () => {
-  const valContext = useContext(AuthContext);
-  const {isLoggedOn, setIsLoggedOn} = useContext(AuthContext);
-  console.log('value of valContext? '+valContext.isLoggedOn);
-  console.log('value of valContext with useContext? '+isLoggedOn);
+  const {isLoggedOn} = useContext(AuthContext);
   return(
     <Fragment>
       <div className="btn-group">

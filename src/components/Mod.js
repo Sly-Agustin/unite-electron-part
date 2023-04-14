@@ -74,12 +74,32 @@ const Mod = () => {
   return(
     <Fragment>
       <h2>{mod.name}</h2>
-      {mod.picture && <img src={process.env.REACT_APP_HOST+'/mod/'+mod._id+'/picture'}></img>}
-      {mod.description && <p>Description:</p>}
-      {mod.description && <p>{mod.description}</p>}
-      {mod.additionalInfo && <p>Additional info: {mod.additionalInfo}</p>}   
+      <div  className="d-flex justify-content-center align-content-center align-items-center">
+        {mod.picture && <img src={process.env.REACT_APP_HOST+'/mod/'+mod._id+'/picture'}></img>}
+      </div>
+      <ul className="nav nav-tabs" id="myTab" role="tablist">
+        <li className="nav-item" role="presentation">
+          <button className="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Overview</button>
+        </li>
+        {mod.additionalInfo &&
+        <li className="nav-item" role="presentation">
+          <button className="nav-link" id="additionalInfo-tab" data-bs-toggle="tab" data-bs-target="#additionalInfo" type="button" role="tab" aria-controls="additionalInfo" aria-selected="false">Additional information</button>
+        </li>
+        }
+        
+        <li className="nav-item" role="presentation">
+          <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+        </li>
+      </ul>
+      <div className="tab-content" id="myTabContent">
+        <div className="tab-pane fade show active font-color-light" id="overview" role="tabpanel" aria-labelledby="overview-tab">{mod.description}</div>
+        {mod.additionalInfo &&
+          <div className="tab-pane fade font-color-light" id="additionalInfo" role="tabpanel" aria-labelledby="additionalInfo-tab">{mod.additionalInfo}</div>
+        }
+        <div className="tab-pane fade font-color-light" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      </div>
       {messages && <p>{messages}</p>}
-      {Object.entries(mod).length!=0 && <button onClick={downloadFile}>Download</button>}
+      {Object.entries(mod).length!=0 && <button className="mt-3 btn button-dark" onClick={downloadFile}>Download</button>}
     </Fragment>
   )
 }
