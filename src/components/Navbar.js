@@ -11,8 +11,8 @@ const Navbar = () => {
       <div className="btn-group">
         <Link to="/" className="btn btn-dark">Index</Link>
         <Link to="/games" className="btn btn-dark">Games</Link>
-        <Link to="/register" className="btn btn-dark">Register</Link>
-        <Link to="/login" className="btn btn-dark">Login</Link>
+        {!isLoggedOn && <Link to="/register" className="btn btn-dark">Register</Link>}
+        {!isLoggedOn && <Link to="/login" className="btn btn-dark">Login</Link>}
         {isLoggedOn && <Link to="/logout" className="btn btn-dark">Logout</Link>}
       </div>
       <hr />   
