@@ -11,6 +11,7 @@ const UploadMod = () => {
   const [userId, setUserId] = useState('');
   const [messages, setMessages] = useState();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const { id } = useParams();
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -70,7 +71,6 @@ const UploadMod = () => {
           credentials: 'include'
         });
         if(response.ok){
-          setMessages('Mod successfully sent!');
           const responseJson = await response.json();
           if(selectedImage!=null){
             const formData = new FormData();
@@ -81,6 +81,16 @@ const UploadMod = () => {
               credentials: 'include'
             })
           }
+          if(selectedFile!=null){
+            const formDataFile = new FormData();
+            formDataFile.append("file", selectedFile);
+            await fetch(`${process.env.REACT_APP_HOST}/mod/${responseJson.id}/file`, {
+              method: "POST",
+              body: formDataFile,
+              credentials: 'include'
+            })
+          }
+          setMessages('Mod successfully sent!');
         }
         else{
           const error= await response.json()
@@ -146,11 +156,25 @@ const UploadMod = () => {
         <label for="picture">Mod picture (optional)</label>
           <input
             type="file"
+            accept=".png, .jpg, .webp"
             id="picture"
             name="myImage"
             onChange={(event) => {
               console.log(event.target.files[0]);
               setSelectedImage(event.target.files[0]);
+            }}
+          />
+        </div>
+        <div className="col-md-3">
+        <label for="modFile">Mod file</label>
+          <input
+            type="file"
+            accept=".zip"
+            id="modFile"
+            name="myModFile"
+            onChange={(event) => {
+              console.log(event.target.files[0]);
+              setSelectedFile(event.target.files[0]);
             }}
           />
         </div>
