@@ -62,15 +62,15 @@ const Register = () => {
 
   return(
     <Fragment>
-      <div class="container h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-lg-12 col-xl-11">
-            <div class="card dark-bg-no-hover">
-              <div class="card-body p-md-5">
-                <div class="row justify-content-center">
-                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                    <h2 class="text-center fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</h2>
-                    <form class="mx-1 mx-md-4" onSubmit={handleSubmit(onSubmit)}>
+      <div className="container h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col-lg-12 col-xl-11">
+            <div className="card dark-bg-no-hover">
+              <div className="card-body p-md-5">
+                <div className="row justify-content-center">
+                  <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <h2 className="text-center fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</h2>
+                    <form className="mx-1 mx-md-4" onSubmit={handleSubmit(onSubmit)}>
                       <div className="d-flex flex-row align-items-center mb-4">
                         <input className="form-control bg-dark-hover border-0" 
                           type="email" 

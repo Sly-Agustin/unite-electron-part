@@ -42,7 +42,7 @@ const AllGames = () => {
     <Fragment>
       <h1>Games available</h1>
       <div className="container">      
-        <div class="row">
+        <div className="row">
           {
             data.games.map((game) => 
               <div className="col-sm-2 me-2">
