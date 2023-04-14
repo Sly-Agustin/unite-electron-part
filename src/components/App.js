@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  NavLink,
   redirect
 } from "react-router-dom";
 import AllGames from "./AllGames";
@@ -14,6 +13,7 @@ import SpecificGame from "./SpecificGame";
 import Mod from "./Mod";
 import UploadMod from "./UploadMod";
 import Navbar from "./Navbar";
+import Menu from "./Menu";
 
 export const AuthContext = createContext(null);
 
@@ -26,6 +26,7 @@ const App = () => {
         <div className="container">
           <Navbar />
           <Routes>
+            <Route path="/" element={<Menu />}></Route>
             <Route path="/login" element={<Login />} loader={async() => { if(localStorage.getItem('logged')) {return redirect("/games");} }}></Route>
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/games" element={<AllGames />}></Route>

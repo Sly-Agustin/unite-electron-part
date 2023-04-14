@@ -87,7 +87,7 @@ const Mod = () => {
         </li>
         }        
       </ul>
-      <div className="tab-content" id="myTabContent">
+      <div className="tab-content mt-3" id="myTabContent">
         <div className="tab-pane fade show active font-color-light" id="overview" role="tabpanel" aria-labelledby="overview-tab">{mod.description}</div>
         {mod.additionalInfo &&
           <div className="tab-pane fade font-color-light" id="additionalInfo" role="tabpanel" aria-labelledby="additionalInfo-tab">{mod.additionalInfo}</div>
