@@ -6,6 +6,34 @@
   background-color: #646464;
   transition: 0.3s;
 }
+.dark-bg-no-hover {
+  background-color: #383838;
+}
+.register-bg {
+  background-color: #181818;
+}
+.bg-dark-hover {
+  background-color: #292b2c;
+  color: #d1d1d1;
+}
+.bg-dark-hover::placeholder {
+  color: #d1d1d1;
+}
+.bg-dark-hover::-ms-input-placeholder {
+  color: #d1d1d1;
+}
+.button-dark {
+  background-color: #181818;
+  color: #d1d1d1;
+}
+.button-dark:hover {
+  background-color: #000000;
+  color: #d1d1d1;
+}
+
+input:-internal-autofill-selected  {
+  background-color: #292b2c !important;
+}
 
 hr {
   display: block;
@@ -17,5 +45,5 @@ hr {
 }
 
 p, h1, h2, h3, h4, h5 {
-  color: #d1d1d1
+  color: #d1d1d1 !important
 }
