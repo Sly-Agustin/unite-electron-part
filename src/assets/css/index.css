@@ -30,6 +30,9 @@
   background-color: #000000;
   color: #d1d1d1;
 }
+.font-color-light {
+  color: #d1d1d1;
+}
 
 input:-internal-autofill-selected  {
   background-color: #292b2c !important;
@@ -44,6 +47,11 @@ hr {
   padding: 0;
 }
 
-p, h1, h2, h3, h4, h5 {
+p, h1, h2, h3, h4, h5, label{
   color: #d1d1d1 !important
+}
+
+img {
+  max-width: 800px;
+  max-height: 800px;
 }
