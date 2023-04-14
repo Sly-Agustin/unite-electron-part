@@ -1,14 +1,15 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useContext } from "react";
 import { Link, useParams } from 'react-router-dom'
 import noimage from '../assets/no-image-icon.png'
 import loadingGif from '../assets/loading.gif'
 import cssFile from '../assets/css/index.css'
+import { AuthContext } from "./App";
 
 const SpecificGame = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [mods, setMods] = useState([]);
-  const [isLogged, setIsLogged] = useState(false);
   const [gameName, setGameName] = useState();
+  const {isLoggedOn} = useContext(AuthContext);
 
   const { id } = useParams();
 
@@ -33,10 +34,6 @@ const SpecificGame = () => {
       }
     }
 
-    if (localStorage.getItem('logged')) {
-      setIsLogged(true);
-    }
-
     getMods();
   }, [])
   
@@ -54,11 +51,9 @@ const SpecificGame = () => {
   return (
     <Fragment>
       <h2 className="mb-4">Viewing mods for {gameName}</h2>
-      {isLogged && <p>Want to upload your mod? <Link className="btn button-dark ms-4" to={`upload`}>Let's do it!</Link></p>}
+      {isLoggedOn && <p>Want to upload your mod? <Link className="btn button-dark ms-4" to={`upload`}>Let's do it!</Link></p>}
       <div className="container d-flex">
         <div className="row">
-
-
         {
           mods.map((mod) => 
           <div className="col-6">
