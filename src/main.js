@@ -10,8 +10,8 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1440,
+    height: 900,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
@@ -23,6 +23,7 @@ const createWindow = () => {
   // and load the index.html of the app.
   //mainWindow.loadFile(path.join(__dirname, 'index.html'));
   mainWindow.loadURL('http://localhost:3000')
+  //mainWindow.loadURL(`file://${path.join(__dirname, '../public/index.html')}`)
 
   const menu = Menu.buildFromTemplate(navTemplate);
   Menu.setApplicationMenu(menu);
