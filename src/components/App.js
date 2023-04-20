@@ -23,7 +23,7 @@ const App = () => {
   return(  
     <AuthContext.Provider value={{isLoggedOn, setIsLoggedOn}}>
       <Router>
-        <div className="container">
+        <div className="d-flex">
           <Navbar />
           <Routes>
             <Route path="/" element={<Menu />}></Route>

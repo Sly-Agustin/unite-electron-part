@@ -50,6 +50,7 @@ const SpecificGame = () => {
 
   return (
     <Fragment>
+      <div className="container">
       <h2 className="mb-4">Viewing mods for {gameName}</h2>
       {isLoggedOn && <p>Want to upload your mod? <Link className="btn button-dark ms-4" to={`upload`}>Let's do it!</Link></p>}
       <div className="container d-flex">
@@ -77,6 +78,7 @@ const SpecificGame = () => {
           )
         }
         </div>
+      </div>
       </div>
     </Fragment>
   )

@@ -62,6 +62,7 @@ const Login = () => {
 
   return(
     <Fragment>
+      <div className="container">
       <h1>Login</h1>
       <form className="row mt-3" onSubmit={handleSubmit(onSubmit)}>
         <div className="col-md-3">
@@ -100,6 +101,7 @@ const Login = () => {
         </div>}
         {logged && <Navigate replace to="/games" />}
       </form>
+      </div>
     </Fragment>
   )
 }

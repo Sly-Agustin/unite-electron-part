@@ -120,7 +120,8 @@ const UploadMod = () => {
   }
   return(
     <Fragment>
-      <p>Upload mod screen of game {gameData.name}</p>
+      <div className="container">
+      <h2>Uploading a mod for {gameData.name}</h2>
 
       <form /*className="row"*/ onSubmit={handleSubmit(onSubmit)}>
         <div className="col-md-3">
@@ -194,6 +195,7 @@ const UploadMod = () => {
         {sendingMod && <p>Sending mod...</p>}
         <p className="mt-3">{messages}</p>
       </form>
+      </div>
     </Fragment>
   )
 }

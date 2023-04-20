@@ -27,11 +27,13 @@ const AllGames = () => {
   if(isLoading){
     return(
       <Fragment>
-        <h1>All games dummy</h1>
-        <div className="App">
-          <h2>Loading...</h2>
-          <div className="container d-flex justify-content-center align-content-center">
-            <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+        <div className="container">
+          <h1>Games available</h1>
+          <div className="App">
+            <h2>Loading...</h2>
+            <div className="container d-flex justify-content-center align-content-center">
+              <img src={loadingGif} width={200} height={200} alt="Loading..."></img>
+            </div>
           </div>
         </div>
       </Fragment>
@@ -40,6 +42,7 @@ const AllGames = () => {
 
   return(
     <Fragment>
+      <div className="container">
       <h1>Games available</h1>
       <div className="container">      
         <div className="row">
@@ -59,6 +62,7 @@ const AllGames = () => {
             )
           }
         </div>
+      </div>
       </div>
     </Fragment>
   )
