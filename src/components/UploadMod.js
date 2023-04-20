@@ -12,6 +12,7 @@ const UploadMod = () => {
   const [messages, setMessages] = useState();
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [sendingMod, setSendingMod] = useState(false);
 
   const { id } = useParams();
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -62,6 +63,7 @@ const UploadMod = () => {
   const onSubmit = () => {
     const registerMod = async() => {
       try{
+        setSendingMod(true);
         const response = await fetch(`${process.env.REACT_APP_HOST}/mod`, {
           method: "POST",
           headers: {
@@ -94,8 +96,10 @@ const UploadMod = () => {
         }
         else{
           const error= await response.json()
+          setSendingMod(false);
           setMessages('Error: '+error.message)
         }
+        setSendingMod(false)
       }
       catch(err){
         console.log('Something bad happened, try again later');
@@ -125,7 +129,10 @@ const UploadMod = () => {
             type="text" 
             placeholder="Enter name"
             id="modName" 
-            {...register("name", {required: 'Mod name required', maxLength: {value: 100, message: 'Max length of mod name is 100 characters'}})} 
+            {...register("name", {
+              required: 'Mod name required', 
+              minLength: {value: 3, message: 'Min length of mod name is 3 characters'}, 
+              maxLength: {value: 100, message: 'Max length of mod name is 100 characters'}})} 
             onChange={handleInputDataChange}>
           </input>
           <p className="text-danger">{errors.name?.message}</p>
@@ -150,13 +157,13 @@ const UploadMod = () => {
             {...register("additionalInfo", {maxLength: {value: 10000, message: 'Max length is 10000 characters'}})} 
             onChange={handleInputDataChange}>
           </textarea>
-          <p className="text-danger">{errors.description?.message}</p>
+          <p className="text-danger">{errors.additionalInfo?.message}</p>
         </div>
         <div className="col-md-3">
         <label for="picture">Mod picture (optional)</label>
           <input
             type="file"
-            accept=".png, .jpg, .webp"
+            accept=".png, .jpg, .webp, jpeg"
             id="picture"
             name="myImage"
             onChange={(event) => {
@@ -172,16 +179,20 @@ const UploadMod = () => {
             accept=".zip"
             id="modFile"
             name="myModFile"
+            {...register("modFile", {required: 'You need to attach a mod file'})}
             onChange={(event) => {
               console.log(event.target.files[0]);
               setSelectedFile(event.target.files[0]);
             }}
           />
+          <p className="text-danger">{errors.modFile?.message}</p>
         </div>
         <div className="col-md-3">
-          <button className="btn btn-primary">Send mod</button>
+          {!sendingMod && <button className="btn button-dark mt-3">Send mod</button>}
+          {sendingMod && <button className="btn button-dark mt-3" disabled>Send mod</button>}
         </div>  
-        <p>{messages}</p>
+        {sendingMod && <p>Sending mod...</p>}
+        <p className="mt-3">{messages}</p>
       </form>
     </Fragment>
   )
