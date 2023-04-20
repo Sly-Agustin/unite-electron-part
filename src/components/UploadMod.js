@@ -2,6 +2,7 @@ import React, { useState, Fragment, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import loadingGif from '../assets/loading.gif'
+import BackButton from "./BackButton";
 
 const UploadMod = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -121,80 +122,81 @@ const UploadMod = () => {
   return(
     <Fragment>
       <div className="container">
-      <h2>Uploading a mod for {gameData.name}</h2>
+        <BackButton />
+        <h2>Uploading a mod for {gameData.name}</h2>
 
-      <form /*className="row"*/ onSubmit={handleSubmit(onSubmit)}>
-        <div className="col-md-3">
-          <label for="modName">Mod name</label>
-          <input className="form-control" 
-            type="text" 
-            placeholder="Enter name"
-            id="modName" 
-            {...register("name", {
-              required: 'Mod name required', 
-              minLength: {value: 3, message: 'Min length of mod name is 3 characters'}, 
-              maxLength: {value: 100, message: 'Max length of mod name is 100 characters'}})} 
-            onChange={handleInputDataChange}>
-          </input>
-          <p className="text-danger">{errors.name?.message}</p>
-        </div>
-        <div className="col-md-3">
-          <label for="modDescription">Description</label>
-          <textarea  className="form-control" 
-            type="text" 
-            placeholder="Enter description"
-            id="modDescription" 
-            {...register("description", {required: 'Mod description required', maxLength: {value: 10000, message: 'Max length of mod name is 10000 characters'}})} 
-            onChange={handleInputDataChange}>
-          </textarea>
-          <p className="text-danger">{errors.description?.message}</p>
-        </div>
-        <div className="col-md-3">
-          <label for="additionalInfo">Additional Info (any tips or things to install the mod)</label>
-          <textarea  className="form-control" 
-            type="text" 
-            placeholder="Additional info"
-            id="additionalInfo" 
-            {...register("additionalInfo", {maxLength: {value: 10000, message: 'Max length is 10000 characters'}})} 
-            onChange={handleInputDataChange}>
-          </textarea>
-          <p className="text-danger">{errors.additionalInfo?.message}</p>
-        </div>
-        <div className="col-md-3">
-        <label for="picture">Mod picture (optional)</label>
-          <input
-            type="file"
-            accept=".png, .jpg, .webp, jpeg"
-            id="picture"
-            name="myImage"
-            onChange={(event) => {
-              console.log(event.target.files[0]);
-              setSelectedImage(event.target.files[0]);
-            }}
-          />
-        </div>
-        <div className="col-md-3">
-        <label for="modFile">Mod file</label>
-          <input
-            type="file"
-            accept=".zip"
-            id="modFile"
-            name="myModFile"
-            {...register("modFile", {required: 'You need to attach a mod file'})}
-            onChange={(event) => {
-              console.log(event.target.files[0]);
-              setSelectedFile(event.target.files[0]);
-            }}
-          />
-          <p className="text-danger">{errors.modFile?.message}</p>
-        </div>
-        <div className="col-md-3">
-          {!sendingMod && <button className="btn button-dark mt-3">Send mod</button>}
-          {sendingMod && <button className="btn button-dark mt-3" disabled>Send mod</button>}
-        </div>  
-        {sendingMod && <p>Sending mod...</p>}
-        <p className="mt-3">{messages}</p>
-      </form>
+        <form /*className="row"*/ onSubmit={handleSubmit(onSubmit)}>
+          <div className="col-md-3">
+            <label for="modName">Mod name</label>
+            <input className="form-control" 
+              type="text" 
+              placeholder="Enter name"
+              id="modName" 
+              {...register("name", {
+                required: 'Mod name required', 
+                minLength: {value: 3, message: 'Min length of mod name is 3 characters'}, 
+                maxLength: {value: 100, message: 'Max length of mod name is 100 characters'}})} 
+              onChange={handleInputDataChange}>
+            </input>
+            <p className="text-danger">{errors.name?.message}</p>
+          </div>
+          <div className="col-md-3">
+            <label for="modDescription">Description</label>
+            <textarea  className="form-control" 
+              type="text" 
+              placeholder="Enter description"
+              id="modDescription" 
+              {...register("description", {required: 'Mod description required', maxLength: {value: 10000, message: 'Max length of mod name is 10000 characters'}})} 
+              onChange={handleInputDataChange}>
+            </textarea>
+            <p className="text-danger">{errors.description?.message}</p>
+          </div>
+          <div className="col-md-3">
+            <label for="additionalInfo">Additional Info (any tips or things to install the mod)</label>
+            <textarea  className="form-control" 
+              type="text" 
+              placeholder="Additional info"
+              id="additionalInfo" 
+              {...register("additionalInfo", {maxLength: {value: 10000, message: 'Max length is 10000 characters'}})} 
+              onChange={handleInputDataChange}>
+            </textarea>
+            <p className="text-danger">{errors.additionalInfo?.message}</p>
+          </div>
+          <div className="col-md-3">
+          <label for="picture">Mod picture (optional)</label>
+            <input
+              type="file"
+              accept=".png, .jpg, .webp, jpeg"
+              id="picture"
+              name="myImage"
+              onChange={(event) => {
+                console.log(event.target.files[0]);
+                setSelectedImage(event.target.files[0]);
+              }}
+            />
+          </div>
+          <div className="col-md-3">
+          <label for="modFile">Mod file</label>
+            <input
+              type="file"
+              accept=".zip"
+              id="modFile"
+              name="myModFile"
+              {...register("modFile", {required: 'You need to attach a mod file'})}
+              onChange={(event) => {
+                console.log(event.target.files[0]);
+                setSelectedFile(event.target.files[0]);
+              }}
+            />
+            <p className="text-danger">{errors.modFile?.message}</p>
+          </div>
+          <div className="col-md-3">
+            {!sendingMod && <button className="btn button-dark mt-3">Send mod</button>}
+            {sendingMod && <button className="btn button-dark mt-3" disabled>Send mod</button>}
+          </div>  
+          {sendingMod && <p>Sending mod...</p>}
+          <p className="mt-3">{messages}</p>
+        </form>
       </div>
     </Fragment>
   )
